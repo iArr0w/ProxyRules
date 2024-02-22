@@ -1,0 +1,15 @@
+#!url=https://raw.githubusercontent.com/iArr0w/ProxyRules/Modules/AliyunCheckin.sgmodule
+#!name=阿里云盘签到
+#!desc=阿里云盘每日自动签到
+# 感谢@lowking大佬的脚本
+
+[Script]
+# >获取签到cookie，获取成功后注释掉
+#https://auth.alipan.com/v2/account/token
+#获取签到cookie = requires-body=1,type=http-response,pattern=https:\/\/auth.(aliyundrive|alipan).com\/v2\/account\/token,script-path=https://raw.githubusercontent.com/lowking/Scripts/master/ali/aliYunPanCheckIn.js
+# >阿里云每日签到，根据需求填写时间
+阿里云签到 = type=cron,script-path=https://raw.githubusercontent.com/lowking/Scripts/master/ali/aliYunPanCheckIn.js,cronexpr="0 0 8 * * ?",timeout=10,script-update-interval=86400,enable=true
+
+[MITM]
+hostname = %APPEND% auth.alipan.com
+

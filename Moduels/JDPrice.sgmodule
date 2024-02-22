@@ -1,0 +1,10 @@
+#!url=https://raw.githubusercontent.com/iArr0w/ProxyRules/Modules/JDPrice.sgmodule
+#!name=京东比价
+#!desc=京东商品界面历史价格显示
+
+[Script]
+# 京东比价显示历史价格
+京东比价 = type=http-response,script-path=https://service.2ti.st/QuanX/Script/jd_tb_price/main.js,pattern=^https?://api\.m\.jd\.com/client\.action\?functionId=(wareBusiness|serverConfig|basicConfig),max-size=131072,requires-body=true,timeout=10,script-update-interval=86400,enable=true
+
+[MITM]
+hostname = %APPEND% api.m.jd.com
