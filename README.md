@@ -1,2 +1,2 @@
 # Shadow
-    MyShadowMini：自用小火箭Shadowrocket最小配置
+    MyShadowMini：自用Shadowrocket最小配置
