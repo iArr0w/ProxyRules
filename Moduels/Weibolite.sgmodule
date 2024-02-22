@@ -1,0 +1,36 @@
+#!url=https://raw.githubusercontent.com/iArr0w/ProxyRules/Modules/Weibolite.sgmodule
+#!name=微博轻享版去广告
+#!desc=微博轻享版（原国际版）去开屏、趋势及用户中心广告
+#搬运自@ddgksf2013
+
+[Rule]
+
+RULE-SET,https://raw.githubusercontent.com/chengkongyiban/myself-rule-set/main/WeiboLiteAds.list,REJECT-DICT
+
+[URL Rewrite]
+
+# > 微博国际版_hot_search@ddgksf2013
+^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php\?a=hot_search_users - reject-dict
+# > 微博国际版_热推荐@ddgksf2013
+^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/ad\/weibointl\? - reject-dict
+# > 微博国际版_屏蔽search_suggest@ddgksf2013
+# ^https?:\/\/m?api\.weibo\.c(n|om)\/\d\/page\/get_search_suggest - reject-dict
+# > 微博国际版_屏蔽searching_info@ddgksf2013
+^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php.*user&a=get_searching_info - reject-dict
+# > 微博国际版_屏蔽search_topic@ddgksf2013 
+^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php.*feed&a=search_topic - reject-dict
+
+[Script]
+
+# > 微博国际版_屏蔽开屏广告@ddgksf2013 
+weibo_json = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php.*get_coopen_ads,requires-body=1,max-size=0,script-path=https://github.com/ddgksf2013/Scripts/raw/master/weibo_json.js
+# > 微博&国际版_sdkad@ddgksf2013
+weibo_json = type=http-response,pattern=^https?://(sdk|wb)app\.uve\.weibo\.com(/interface/sdk/sdkad.php|/wbapplua/wbpullad.lua),requires-body=1,max-size=0,script-path=https://github.com/ddgksf2013/Scripts/raw/master/weibo_json.js
+# > 微博国际版_趋势顶部CARD去广告@ddgksf2013
+weibo_json = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.c(n|om)\/portal\.php.*feed&a=trends,requires-body=1,max-size=0,script-path=https://github.com/ddgksf2013/Scripts/raw/master/weibo_json.js
+# > 微博国际版_用户中心@ddgksf2013
+weibo_json = type=http-response,pattern=^https?:\/\/weibointl\.api\.weibo\.cn\/portal\.php\?a=user_center,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chengkongyiban/shadowrocket/main/scripts/weibo_json.js
+
+[MITM]
+
+hostname = %APPEND% *.uve.weibo.com,*api.weibo.cn,*api.weibo.com,h5.sinaimg.cn,new.vip.weibo.cn,*.sc.weibo.com,captcha.weibo.com,wx*.sinaimg.cn,js.t.sinajs.cn,*.e.weibo.com
