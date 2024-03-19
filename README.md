@@ -1,13 +1,4 @@
 # ProxyRules
-    MyShadowMini：自用Shadowrocket最小配置。
-    规则全部来自网络，仅方便个人使用。
-    感谢原作者的付出。
-    @ACL4SSR
-    @blackmatrix7
-    @DivineEngine
-    @ddgksf2013
-    @lowking
-    @Maasea
-    @Privacy protection tools
-    @StimeKe
-    @VirgilClyne
+    自用Shadowrocket最小配置
+    规则全部来自网络，仅方便个人使用
+    配置包含了屏蔽系统更新的分流规则（默认开启）
